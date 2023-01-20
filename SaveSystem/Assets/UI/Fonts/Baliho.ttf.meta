@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1be054c7398f9fe4b9a9008d4c4a8927
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Baliho
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a7ae357191f96ce40b1388e6443b5fed, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
