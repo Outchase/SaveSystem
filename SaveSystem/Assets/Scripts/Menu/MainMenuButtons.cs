@@ -9,11 +9,18 @@ public class MainMenuButtons : MonoBehaviour
     //initalize the UIs
     [SerializeField] private GameObject optionsMenuUI;
     [SerializeField] private GameObject mainMenuUI;
+    [SerializeField] private GameObject loadGameMenuUI;
 
     //change scene on the given sceneID
-    public void OnChangeScene(int sceneId)
+    public void OnNewGame(int sceneId)
     {
         SceneManager.LoadScene(sceneId);
+    }
+
+    public void OnLoadGame()
+    {
+        loadGameMenuUI.SetActive(true);
+        mainMenuUI.SetActive(false);
     }
 
     //open options menu

@@ -5,16 +5,17 @@ using UnityEngine;
 public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] private GameObject optionsMenuUI;
-    [SerializeField] private GameObject controlsMenuUI;
+    //[SerializeField] private GameObject controlsMenuUI;
     [SerializeField] private GameObject soundMenuUI;
     [SerializeField] private GameObject graphicsMenuUI;
+    [SerializeField] private GameObject creditsMenuUI;
     [SerializeField] private GameObject returnMenuUI;
 
-    public void OpenControlsMenu()
+    /*public void OpenControlsMenu()
     {
         optionsMenuUI.SetActive(false);
         controlsMenuUI.SetActive(true);
-    }
+    }*/
 
     public void OpenSoundsMenu()
     {
@@ -30,5 +31,11 @@ public class OptionsMenu : MonoBehaviour
     {
         returnMenuUI.SetActive(true);
         optionsMenuUI.SetActive(false);
+    }
+
+    public void OpenCreditsMenu()
+    {
+        optionsMenuUI.SetActive(false);
+        creditsMenuUI.SetActive(true);
     }
 }
