@@ -11,8 +11,9 @@ public class SoundsMenu : MonoBehaviour
     [SerializeField] private GameObject returnMenuUI;
     //[SerializeField] private float defaultVolume = 1.0f;
 
-    //[SerializeField] private Slider bgmVolumeSlider = null;
-    //[SerializeField] private Slider sfxVolumeSlider = null;
+    [SerializeField] private Slider masterSlider = null;
+    [SerializeField] private Slider bgmSlider = null;
+    [SerializeField] private Slider sfxSlider = null;
     //[SerializeField] private AudioMixer mainMixer;
     [SerializeField] private GameObject confirmationPrompt = null;
 
@@ -36,7 +37,7 @@ public class SoundsMenu : MonoBehaviour
         StartCoroutine(ConfirmationBox());
         // Debug.Log(PlayerPrefs.GetFloat("masterVolume", AudioListener.volume));
 
-        Debug.Log("Applied Settings");
+        Debug.Log("Applied Sound Settings");
     }
 
     public void ResetSettings(string _menuType)

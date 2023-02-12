@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class GraphicsMenu : MonoBehaviour
 {
-    private int tmpQualityLevel;
-    private bool tmpIsFullscreen;
+    //private int tmpQualityLevel;
+    //private bool tmpIsFullscreen;
 
     [SerializeField] private GameObject graphicsMenuUI;
     [SerializeField] private GameObject returnMenuUI;
@@ -71,7 +71,7 @@ public class GraphicsMenu : MonoBehaviour
         StartCoroutine(ConfirmationBox());
         //Debug.Log(PlayerPrefs.GetInt("masterFullscreen"));
 
-        Debug.Log("Applied Settings");
+        Debug.Log("Applied Graphic Settings");
 
     }
     public IEnumerator ConfirmationBox()
