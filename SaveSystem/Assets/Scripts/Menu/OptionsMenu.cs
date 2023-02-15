@@ -9,7 +9,6 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private GameObject soundMenuUI;
     [SerializeField] private GameObject graphicsMenuUI;
     [SerializeField] private GameObject creditsMenuUI;
-    [SerializeField] private GameObject returnMenuUI;
 
     /*public void OpenControlsMenu()
     {
@@ -29,8 +28,7 @@ public class OptionsMenu : MonoBehaviour
     }
     public void CloseOptionsMenu()
     {
-        returnMenuUI.SetActive(true);
-        optionsMenuUI.SetActive(false);
+     SceneLoader.Instance.UnloadCurrentScene();
     }
 
     public void OpenCreditsMenu()

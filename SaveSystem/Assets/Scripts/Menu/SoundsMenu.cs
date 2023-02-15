@@ -20,9 +20,28 @@ public class SoundsMenu : MonoBehaviour
 
     public void Awake()
     {
+        masterSlider.onValueChanged.AddListener(OnMasterSliderChange);
+        bgmSlider.onValueChanged.AddListener(OnBGMSliderChange);
+        sfxSlider.onValueChanged.AddListener(OnSFXSliderChange);
+
         //mainMixer.GetFloat("MainVolume", out float value);
         //bgmVolumeSlider.value = Mathf.Pow(10, value * 0.05f);
         //sfxVolumeSlider.value = Mathf.Pow(10, value * 0.05f);
+    }
+
+    public void OnMasterSliderChange(float value)
+    {
+        Debug.Log("Master: " + value);
+    }
+
+    public void OnBGMSliderChange(float value)
+    {
+        Debug.Log("BGM: " + value);
+    }
+
+    public void OnSFXSliderChange(float value)
+    {
+        Debug.Log("SFX: " + value);
     }
 
     public void CloseSoundsMenu()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AdvancedCharacterController : MonoBehaviour
 {
@@ -68,6 +69,7 @@ public class AdvancedCharacterController : MonoBehaviour
         inputOptions.Player.Dash.performed += Dash;
         inputOptions.Player.Dash.canceled += Dash;
 
+        inputOptions.Player.Pause.started += Pause;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -237,6 +239,13 @@ public class AdvancedCharacterController : MonoBehaviour
                 dampingMovingForward *= speedMultipier;
             }
         }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        SceneLoader.Instance.LoadScene(SceneIndices.Pause, LoadSceneMode.Additive);
     }
 }
 

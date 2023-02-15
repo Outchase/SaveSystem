@@ -14,20 +14,18 @@ public class MainMenuButtons : MonoBehaviour
     //change scene on the given sceneID
     public void OnNewGame(int sceneId)
     {
-        SceneManager.LoadScene(sceneId);
+        SceneLoader.Instance.LoadScene(SceneIndices.Game);
     }
 
-    public void OnLoadGame()
+    public void OpenSaveMenu()
     {
-        loadGameMenuUI.SetActive(true);
-        mainMenuUI.SetActive(false);
+        SceneLoader.Instance.LoadScene(SceneIndices.SaveFiles, LoadSceneMode.Additive);
     }
 
     //open options menu
     public void OpenOptionsMenu()
     {
-        optionsMenuUI.SetActive(true);
-        mainMenuUI.SetActive(false);
+        SceneLoader.Instance.LoadScene(SceneIndices.Settings, LoadSceneMode.Additive);
     }
 
     //exit application
