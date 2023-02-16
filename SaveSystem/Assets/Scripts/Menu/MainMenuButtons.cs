@@ -14,7 +14,7 @@ public class MainMenuButtons : MonoBehaviour
     //change scene on the given sceneID
     public void OnNewGame(int sceneId)
     {
-        SceneLoader.Instance.LoadScene(SceneIndices.Game);
+        SceneLoader.Instance.LoadSceneAsync(SceneIndices.Game, showProgress: true);
     }
 
     public void OpenSaveMenu()

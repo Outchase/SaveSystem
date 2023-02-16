@@ -35,7 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnMainMenu()
     {
-        SceneLoader.Instance.LoadScene(SceneIndices.MainMenu);
+        SceneLoader.Instance.LoadSceneAsync(SceneIndices.MainMenu, showProgress: true);
     }
 
     public void Quit()
