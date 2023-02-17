@@ -7,12 +7,10 @@ using UnityEditor;
 public class MainMenuButtons : MonoBehaviour
 {
     //initalize the UIs
-    [SerializeField] private GameObject optionsMenuUI;
     [SerializeField] private GameObject mainMenuUI;
-    [SerializeField] private GameObject loadGameMenuUI;
 
     //change scene on the given sceneID
-    public void OnNewGame(int sceneId)
+    public void OnNewGame()
     {
         SceneLoader.Instance.LoadSceneAsync(SceneIndices.Game, showProgress: true);
     }
