@@ -69,10 +69,12 @@ public class Settings : ScriptableObject
 
     public void Save()
     {
+        // make a list of objects to save it 
+        // do it monky
         var jsonAudioData = JsonUtility.ToJson(audioSettings);
-        var jsonGraphicData = JsonUtility.ToJson(graphicSettings);
+        //var jsonGraphicData = JsonUtility.ToJson(graphicSettings);
         File.WriteAllText(_filePath, jsonAudioData);
-        File.AppendAllText(_filePath, jsonGraphicData);
+        //File.AppendAllText(_filePath, jsonGraphicData);
     }
 
     public void Load()
