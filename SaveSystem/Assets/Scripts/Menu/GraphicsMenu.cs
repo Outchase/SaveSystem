@@ -22,46 +22,47 @@ public class GraphicsMenu : MonoBehaviour
     [SerializeField] private Toggle fullScreenToggle;
     private Resolution[] resolutions;
     Resolution resolution;
-     private void Âwake()
-     {
-         resolutions = Screen.resolutions;
-         resolutionDropDown.ClearOptions();
+    private void Awake()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropDown.ClearOptions();
 
-         List<string> options = new();
+        List<string> options = new();
 
-         int currentResolutionIndex = 0;
+        int currentResolutionIndex = 0;
 
-         for (int i = 0; i < resolutions.Length; i++)
-         {
-             string option = resolutions[i].width + " x " + resolutions[i].height;
-             options.Add(option);
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
 
-             if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
-             {
-                 currentResolutionIndex = i;
-             }
-         }
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
 
-         resolutionDropDown.AddOptions(options);
-         resolutionDropDown.value = currentResolutionIndex;
-         resolutionDropDown.RefreshShownValue();
+        resolutionDropDown.AddOptions(options);
+        resolutionDropDown.value = currentResolutionIndex;
+        resolutionDropDown.RefreshShownValue();
 
-     }
+    }
 
-     public void SetResolution(int resolutionIndex)
-     {
-          resolution= resolutions[resolutionIndex];
-     }
+    public void SetResolution(int resolutionIndex)
+    {
+        resolution = resolutions[resolutionIndex];
+        Debug.Log(resolution);
+    }
 
-     public void SetFullscreen(bool isFullscreen)
-     {
-         tmpIsFullscreen = isFullscreen;
-     }
+    public void SetFullscreen(bool isFullscreen)
+    {
+        tmpIsFullscreen = isFullscreen;
+    }
 
-     public void SetQuality(int quatlyIndex)
-     {
-         tmpQualityLevel = quatlyIndex;
-     }
+    public void SetQuality(int quatlyIndex)
+    {
+        tmpQualityLevel = quatlyIndex;
+    }
 
     public void GraphicsApply()
     {
@@ -70,6 +71,7 @@ public class GraphicsMenu : MonoBehaviour
         //PlayerPrefs.SetInt("masterFullscreen", (tmpIsFullscreen ? 1 : 0));
 
         StartCoroutine(ConfirmationBox());
+
         Screen.fullScreen = tmpIsFullscreen;
         QualitySettings.SetQualityLevel(tmpQualityLevel);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
@@ -78,7 +80,7 @@ public class GraphicsMenu : MonoBehaviour
 
         //Debug.Log(PlayerPrefs.GetInt("masterFullscreen"));
 
-        Debug.Log("Applied Graphic Settings");
+        //Debug.Log("Applied Graphic Settings");
 
     }
     public IEnumerator ConfirmationBox()
@@ -107,8 +109,8 @@ public class GraphicsMenu : MonoBehaviour
             Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
             resolutionDropDown.value = resolutions.Length;*/
 
-            Debug.Log(_menuType);
-            Debug.Log("Reset Settrings");
+            //Debug.Log(_menuType);
+            //Debug.Log("Reset Settrings");
 
             //GraphicsApply();
         }

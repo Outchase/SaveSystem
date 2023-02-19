@@ -21,13 +21,32 @@ public struct AudioSettings
     }
 }
 
+[Serializable]
+public struct GraphicSettings
+{
+    public int Quality;
+    public int IsFullScreen;
+    public int ResolutionWidth;
+    public int ResulutionHeight;
+
+    public GraphicSettings(int quality, int isFullScreen, int resolutionWidth, int resulutionHeight)
+    {
+        Quality = quality;
+        IsFullScreen = isFullScreen;
+        ResolutionWidth = resolutionWidth;
+        ResulutionHeight = resulutionHeight;
+    }
+}
+
 
 [CreateAssetMenu(menuName = "Game Settings")]
 
 public class Settings : ScriptableObject
 {
+ 
     [SerializeField] private string _fileName;
     [FormerlySerializedAs("SettingsData")] public AudioSettings audioSettings;
+    [FormerlySerializedAs("SettingsData")] public GraphicSettings graphicSettings;
 
     public float MasterVolume
     {
@@ -50,9 +69,10 @@ public class Settings : ScriptableObject
 
     public void Save()
     {
-        Debug.Log(_filePath);
-        var jsonData = JsonUtility.ToJson(audioSettings);
-        File.WriteAllText(_filePath, jsonData);
+        var jsonAudioData = JsonUtility.ToJson(audioSettings);
+        var jsonGraphicData = JsonUtility.ToJson(graphicSettings);
+        File.WriteAllText(_filePath, jsonAudioData);
+        File.AppendAllText(_filePath, jsonGraphicData);
     }
 
     public void Load()
