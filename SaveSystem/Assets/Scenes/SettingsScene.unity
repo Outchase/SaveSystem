@@ -570,9 +570,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843b60ceab328c547ae1e490d4465f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphicSettings: {fileID: 0}
   graphicsMenuUI: {fileID: 1687349827}
   returnMenuUI: {fileID: 961838183}
   confirmationPrompt: {fileID: 835039775}
+  resolutionDropDown: {fileID: 1666129281}
+  qualityDropDown: {fileID: 1436002532}
+  fullScreenToggle: {fileID: 367480544}
 --- !u!1 &224476660
 GameObject:
   m_ObjectHideFlags: 0
@@ -4638,6 +4642,10 @@ MonoBehaviour:
   audioSettings: {fileID: 11400000, guid: 6e4a89f9cd185c24f87fba2c3f88d4b7, type: 2}
   soundsMenuUI: {fileID: 800376897}
   returnMenuUI: {fileID: 961838183}
+  defaultVolumeValue: 1
+  masterVolumeValue: 0
+  bgmVolumeValue: 0
+  sfxVolumeValue: 0
   audioMixer: {fileID: 24100000, guid: 36c9061c17fe31c4c851e7431bfce43f, type: 2}
   masterSlider: {fileID: 933429436}
   bgmSlider: {fileID: 156356765}

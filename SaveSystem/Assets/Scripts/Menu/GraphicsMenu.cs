@@ -6,19 +6,23 @@ using UnityEngine.UI;
 
 public class GraphicsMenu : MonoBehaviour
 {
-    //private int tmpQualityLevel;
-    //private bool tmpIsFullscreen;
+    private int tmpQualityLevel;
+    private bool tmpIsFullscreen;
 
+    [SerializeField] private Settings graphicSettings;
     [SerializeField] private GameObject graphicsMenuUI;
     [SerializeField] private GameObject returnMenuUI;
+
+
+
     [SerializeField] private GameObject confirmationPrompt = null;
 
-    /*public TMP_Dropdown resolutionDropDown;
+    public TMP_Dropdown resolutionDropDown;
     [SerializeField] private TMP_Dropdown qualityDropDown;
     [SerializeField] private Toggle fullScreenToggle;
-    private Resolution[] resolutions;*/
-
-    /* private void Start()
+    private Resolution[] resolutions;
+    Resolution resolution;
+     private void Âwake()
      {
          resolutions = Screen.resolutions;
          resolutionDropDown.ClearOptions();
@@ -46,8 +50,7 @@ public class GraphicsMenu : MonoBehaviour
 
      public void SetResolution(int resolutionIndex)
      {
-         Resolution resolution = resolutions[resolutionIndex];
-         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+          resolution= resolutions[resolutionIndex];
      }
 
      public void SetFullscreen(bool isFullscreen)
@@ -58,17 +61,21 @@ public class GraphicsMenu : MonoBehaviour
      public void SetQuality(int quatlyIndex)
      {
          tmpQualityLevel = quatlyIndex;
-     }*/
+     }
 
     public void GraphicsApply()
     {
         //PlayerPrefs.SetInt("masterQuality", tmpQualityLevel);
-        //QualitySettings.SetQualityLevel(tmpQualityLevel);
 
         //PlayerPrefs.SetInt("masterFullscreen", (tmpIsFullscreen ? 1 : 0));
-        //Screen.fullScreen = tmpIsFullscreen;
 
         StartCoroutine(ConfirmationBox());
+        Screen.fullScreen = tmpIsFullscreen;
+        QualitySettings.SetQualityLevel(tmpQualityLevel);
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+
+
         //Debug.Log(PlayerPrefs.GetInt("masterFullscreen"));
 
         Debug.Log("Applied Graphic Settings");

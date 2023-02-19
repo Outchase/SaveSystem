@@ -20,6 +20,7 @@ public class AdvancedCharacterController : MonoBehaviour
     private bool isGrounded;
     private InputOptions inputOptions;
 
+
     [Header("Movement")]
     [SerializeField] float acceleration = 1;
     [SerializeField] float dampingMovingForward = 0.6f;
@@ -243,9 +244,9 @@ public class AdvancedCharacterController : MonoBehaviour
 
     public void Pause(InputAction.CallbackContext context)
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        SceneLoader.Instance.LoadScene(SceneIndices.Pause, LoadSceneMode.Additive);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            SceneLoader.Instance.LoadScene(SceneIndices.Pause, LoadSceneMode.Additive);
     }
 }
 
