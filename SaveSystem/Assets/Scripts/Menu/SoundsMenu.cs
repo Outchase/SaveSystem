@@ -1,11 +1,8 @@
-using Newtonsoft.Json.Linq;
-using Palmmedia.ReportGenerator.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class SoundsMenu : MonoBehaviour
 {
@@ -97,7 +94,7 @@ public class SoundsMenu : MonoBehaviour
         audioSettings.Save();
         // Debug.Log(PlayerPrefs.GetFloat("masterVolume", AudioListener.volume));
 
-        Debug.Log("Applied Sound Settings");
+        //Debug.Log("Applied Sound Settings");
     }
 
     public void ResetSettings(string _menuType)
