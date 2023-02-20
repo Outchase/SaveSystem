@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SoundsMenu : MonoBehaviour
 {
-    [SerializeField] private Settings audioSettings;
+    [SerializeField] private Settings settingPref;
     [SerializeField] private GameObject soundsMenuUI;
     [SerializeField] private GameObject returnMenuUI;
 
@@ -28,9 +28,9 @@ public class SoundsMenu : MonoBehaviour
     {
         //var eventSystem = FindObjectOfType<EventSystem>();
 
-        masterSlider.value = audioSettings.MasterVolume;
-        sfxSlider.value = audioSettings.SFXVolume;
-        bgmSlider.value = audioSettings.BGMVolume;
+        masterSlider.value = settingPref.MasterVolume;
+        sfxSlider.value = settingPref.SFXVolume;
+        bgmSlider.value = settingPref.BGMVolume;
 
         masterSlider.onValueChanged.AddListener(OnMasterSliderChange);
         bgmSlider.onValueChanged.AddListener(OnBGMSliderChange);
@@ -67,9 +67,9 @@ public class SoundsMenu : MonoBehaviour
     {
         returnMenuUI.SetActive(true);
 
-        masterSlider.value = audioSettings.MasterVolume;
-        sfxSlider.value = audioSettings.SFXVolume;
-        bgmSlider.value = audioSettings.BGMVolume;
+        masterSlider.value = settingPref.MasterVolume;
+        sfxSlider.value = settingPref.SFXVolume;
+        bgmSlider.value = settingPref.BGMVolume;
 
         soundsMenuUI.SetActive(false);
     }
@@ -85,13 +85,13 @@ public class SoundsMenu : MonoBehaviour
         audioMixer.SetFloat("BGMVolume", bgmVolumeValue);
         audioMixer.SetFloat("SFXVolume", sfxVolumeValue);
 
-        audioSettings.MasterVolume = masterVolumeValue;
-        audioSettings.BGMVolume = bgmVolumeValue;
-        audioSettings.SFXVolume = sfxVolumeValue;
+        settingPref.MasterVolume = masterVolumeValue;
+        settingPref.BGMVolume = bgmVolumeValue;
+        settingPref.SFXVolume = sfxVolumeValue;
 
 
 
-        audioSettings.Save();
+        settingPref.Save();
         // Debug.Log(PlayerPrefs.GetFloat("masterVolume", AudioListener.volume));
 
         //Debug.Log("Applied Sound Settings");
@@ -106,13 +106,13 @@ public class SoundsMenu : MonoBehaviour
             audioMixer.SetFloat("BGMVolume", defaultVolumeValue);
             audioMixer.SetFloat("SFXVolume", defaultVolumeValue);
 
-            audioSettings.MasterVolume= defaultVolumeValue;
-            audioSettings.BGMVolume= defaultVolumeValue;
-            audioSettings.SFXVolume = defaultVolumeValue;
+            settingPref.MasterVolume= defaultVolumeValue;
+            settingPref.BGMVolume= defaultVolumeValue;
+            settingPref.SFXVolume = defaultVolumeValue;
 
-            masterSlider.value = audioSettings.MasterVolume;
-            sfxSlider.value = audioSettings.SFXVolume;
-            bgmSlider.value = audioSettings.BGMVolume;
+            masterSlider.value = settingPref.MasterVolume;
+            sfxSlider.value = settingPref.SFXVolume;
+            bgmSlider.value = settingPref.BGMVolume;
 
             VolumeApply();
 

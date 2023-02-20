@@ -5,36 +5,26 @@ using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.Serialization;
+using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
-public struct AudioSettings
+public struct SettingsPref
 {
     public float MasterVolume;
     public float BGMVolume;
     public float SFXVolume;
+    public int QualityIndex;
+    public int IsFullScreen;
+    public float Resolution;
 
-    public AudioSettings(float masterVolume, float sfxVolume, float bgmVolume)
+    public SettingsPref( float masterVolume, float sfxVolume, float bgmVolume, int qualityIndex, int isFullScreen, float resolution)
     {
         MasterVolume = masterVolume;
         SFXVolume = sfxVolume;
         BGMVolume = bgmVolume;
-    }
-}
-
-[Serializable]
-public struct GraphicSettings
-{
-    public int Quality;
-    public int IsFullScreen;
-    public int ResolutionWidth;
-    public int ResulutionHeight;
-
-    public GraphicSettings(int quality, int isFullScreen, int resolutionWidth, int resulutionHeight)
-    {
-        Quality = quality;
+        QualityIndex = qualityIndex;
         IsFullScreen = isFullScreen;
-        ResolutionWidth = resolutionWidth;
-        ResulutionHeight = resulutionHeight;
+        Resolution = resolution;
     }
 }
 
@@ -45,36 +35,50 @@ public class Settings : ScriptableObject
 {
  
     [SerializeField] private string _fileName;
-    [FormerlySerializedAs("SettingsData")] public AudioSettings audioSettings;
-    [FormerlySerializedAs("SettingsData")] public GraphicSettings graphicSettings;
+    [FormerlySerializedAs("SettingsData")] public SettingsPref settingsPref;
 
     public float MasterVolume
     {
-        get => audioSettings.MasterVolume;
-        set => audioSettings.MasterVolume = value;
+        get => settingsPref.MasterVolume;
+        set => settingsPref.MasterVolume = value;
     }
 
     public float SFXVolume
     {
-        get => audioSettings.SFXVolume;
-        set => audioSettings.SFXVolume = value;
+        get => settingsPref.SFXVolume;
+        set => settingsPref.SFXVolume = value;
     }
     public float BGMVolume
     {
-        get => audioSettings.BGMVolume;
-        set => audioSettings.BGMVolume = value;
+        get => settingsPref.BGMVolume;
+        set => settingsPref.BGMVolume = value;
+    }
+
+    public int Quality
+    {
+        get => settingsPref.QualityIndex;
+        set => settingsPref.QualityIndex = (int)value;
+    }
+
+    public int IsFullScreen
+    {
+        get => settingsPref.IsFullScreen;
+        set => settingsPref.IsFullScreen = (int)value;
+    }
+    public float Resolution
+    {
+        get => settingsPref.Resolution;
+        set => settingsPref.Resolution = value;
     }
 
     private string _filePath => $"{Path.Combine(Application.persistentDataPath, _fileName)}";
 
     public void Save()
     {
-        // make a list of objects to save it 
-        // do it monky
-        var jsonAudioData = JsonUtility.ToJson(audioSettings);
-        //var jsonGraphicData = JsonUtility.ToJson(graphicSettings);
-        File.WriteAllText(_filePath, jsonAudioData);
-        //File.AppendAllText(_filePath, jsonGraphicData);
+        //var jsonData = JsonUtility.ToJson("[\"Audio\":" + audioSettings + "}", true);
+        var jsonData = JsonUtility.ToJson(settingsPref, true);
+        //jsonData += JsonUtility.ToJson(graphicSettings, true);
+        File.WriteAllText(_filePath, jsonData);
     }
 
     public void Load()
@@ -82,8 +86,9 @@ public class Settings : ScriptableObject
         if (File.Exists(_filePath))
         {
             var jsonData = File.ReadAllText(_filePath);
-            var data = JsonUtility.FromJson<AudioSettings>(jsonData);
-            audioSettings = data;
+            var data = JsonUtility.FromJson<SettingsPref>(jsonData);
+            settingsPref = data;
         }
     }
+
 }

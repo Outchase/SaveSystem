@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843b60ceab328c547ae1e490d4465f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicSettings: {fileID: 0}
+  settingPref: {fileID: 11400000, guid: 6e4a89f9cd185c24f87fba2c3f88d4b7, type: 2}
   graphicsMenuUI: {fileID: 1687349827}
   returnMenuUI: {fileID: 961838183}
   confirmationPrompt: {fileID: 835039775}
@@ -1361,7 +1361,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 201548109}
+        m_TargetAssemblyTypeName: GraphicsMenu, Assembly-CSharp
+        m_MethodName: SetFullscreen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &372116379
 GameObject:
@@ -4549,7 +4561,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 201548109}
+        m_TargetAssemblyTypeName: GraphicsMenu, Assembly-CSharp
+        m_MethodName: SetQuality
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1436002533
 MonoBehaviour:
@@ -4639,7 +4663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ecac495140e7b449a0b4542ca09dd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSettings: {fileID: 11400000, guid: 6e4a89f9cd185c24f87fba2c3f88d4b7, type: 2}
+  settingPref: {fileID: 11400000, guid: 6e4a89f9cd185c24f87fba2c3f88d4b7, type: 2}
   soundsMenuUI: {fileID: 800376897}
   returnMenuUI: {fileID: 961838183}
   defaultVolumeValue: 1
@@ -5038,7 +5062,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 201548109}
+        m_TargetAssemblyTypeName: GraphicsMenu, Assembly-CSharp
+        m_MethodName: SetResolution
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1666129282
 MonoBehaviour:

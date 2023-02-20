@@ -9,7 +9,7 @@ public class GraphicsMenu : MonoBehaviour
     private int tmpQualityLevel;
     private bool tmpIsFullscreen;
 
-    [SerializeField] private Settings graphicSettings;
+    [SerializeField] private Settings settingPref;
     [SerializeField] private GameObject graphicsMenuUI;
     [SerializeField] private GameObject returnMenuUI;
 
@@ -45,13 +45,11 @@ public class GraphicsMenu : MonoBehaviour
         resolutionDropDown.AddOptions(options);
         resolutionDropDown.value = currentResolutionIndex;
         resolutionDropDown.RefreshShownValue();
-
     }
 
     public void SetResolution(int resolutionIndex)
     {
         resolution = resolutions[resolutionIndex];
-        Debug.Log(resolution);
     }
 
     public void SetFullscreen(bool isFullscreen)
@@ -76,6 +74,10 @@ public class GraphicsMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(tmpQualityLevel);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
+        settingPref.IsFullScreen = (tmpIsFullscreen ? 1 : 0);
+        settingPref.Quality = tmpQualityLevel;
+        //solve this
+        //settingPref.Resolution = resolutions;
 
 
         //Debug.Log(PlayerPrefs.GetInt("masterFullscreen"));
