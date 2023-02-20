@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using TMPro;
 
 public enum SceneIndices
 {
@@ -21,12 +23,18 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Image fillingBar;
     [SerializeField] private float minLoadingDuration = 2f;
+    [SerializeField] private GameObject continuePrompt;
+
+    private InputOptions inputOptions;
+    private bool pressToContinue;
 
 
     private Stack<string> sceneStack = new();
 
     private void Awake()
     {
+
+        pressToContinue = false;
         if (Instance == null)
         {
             Instance = this;
@@ -42,8 +50,20 @@ public class SceneLoader : MonoBehaviour
 
         SceneManager.sceneLoaded += RegisterNewScene;
         loadingScreen.SetActive(false);
+        inputOptions = new InputOptions();
+
+        inputOptions.Menu.Continue.started += Continue;
+
+    }
+    private void OnEnable()
+    {
+        inputOptions.Enable();
     }
 
+    private void OnDisable()
+    {
+        inputOptions.Disable();
+    }
     private void RegisterNewScene(Scene scene, LoadSceneMode node)
     {
         sceneStack.Push(scene.name);
@@ -72,7 +92,7 @@ public class SceneLoader : MonoBehaviour
         fillingBar.fillAmount = 0f;
         var counter = 0f;
 
-        while (asyncOperation.progress < 0.9f || counter <= minLoadingDuration)
+        while (asyncOperation.progress < 0.9f || counter <= minLoadingDuration || pressToContinue != true)
         {
             yield return null;
             counter += Time.unscaledDeltaTime;
@@ -81,22 +101,35 @@ public class SceneLoader : MonoBehaviour
             var loadingProgress = asyncOperation.progress / 0.9f;
 
             fillingBar.fillAmount = Mathf.Min(loadingProgress, waitProgress);
+
+            if (counter >= minLoadingDuration)
+            {
+                continuePrompt.SetActive(true);
+            }
         }
 
+        continuePrompt.SetActive(false);
         asyncOperation.allowSceneActivation = true;
         yield return new WaitUntil( () => asyncOperation.isDone);
+
 
         fillingBar.fillAmount = 1f;
         loadingScreen.SetActive(false);
     }
 
-    public void UnloadScene(SceneIndices sceneIndex)
+    /*public void UnloadScene(SceneIndices sceneIndex)
     {
         //SceneManager.UnloadSceneAsync()
-    }
+    }*/
 
     public void UnloadCurrentScene()
     {
         SceneManager.UnloadSceneAsync(sceneStack.Pop());
+    }
+
+    public void Continue(InputAction.CallbackContext context)
+    {
+        pressToContinue = true;
+
     }
 }

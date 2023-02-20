@@ -14,16 +14,14 @@ public struct SettingsPref
     public float BGMVolume;
     public float SFXVolume;
     public int QualityIndex;
-    public int IsFullScreen;
-    public float Resolution;
+    public Vector3Int Resolution;
 
-    public SettingsPref( float masterVolume, float sfxVolume, float bgmVolume, int qualityIndex, int isFullScreen, float resolution)
+    public SettingsPref( float masterVolume, float sfxVolume, float bgmVolume, int qualityIndex, Vector3Int resolution)
     {
         MasterVolume = masterVolume;
         SFXVolume = sfxVolume;
         BGMVolume = bgmVolume;
         QualityIndex = qualityIndex;
-        IsFullScreen = isFullScreen;
         Resolution = resolution;
     }
 }
@@ -60,12 +58,7 @@ public class Settings : ScriptableObject
         set => settingsPref.QualityIndex = (int)value;
     }
 
-    public int IsFullScreen
-    {
-        get => settingsPref.IsFullScreen;
-        set => settingsPref.IsFullScreen = (int)value;
-    }
-    public float Resolution
+    public Vector3Int Resolution
     {
         get => settingsPref.Resolution;
         set => settingsPref.Resolution = value;

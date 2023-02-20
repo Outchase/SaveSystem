@@ -76,9 +76,6 @@ public class SoundsMenu : MonoBehaviour
 
     public void VolumeApply()
     {
-        //PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
-
-
         StartCoroutine(ConfirmationBox());
 
         audioMixer.SetFloat("MasterVolume", masterVolumeValue);
@@ -89,12 +86,7 @@ public class SoundsMenu : MonoBehaviour
         settingPref.BGMVolume = bgmVolumeValue;
         settingPref.SFXVolume = sfxVolumeValue;
 
-
-
         settingPref.Save();
-        // Debug.Log(PlayerPrefs.GetFloat("masterVolume", AudioListener.volume));
-
-        //Debug.Log("Applied Sound Settings");
     }
 
     public void ResetSettings(string _menuType)
@@ -115,7 +107,6 @@ public class SoundsMenu : MonoBehaviour
             bgmSlider.value = settingPref.BGMVolume;
 
             VolumeApply();
-
         }
     }
 

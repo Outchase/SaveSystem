@@ -13,8 +13,6 @@ public class GraphicsMenu : MonoBehaviour
     [SerializeField] private GameObject graphicsMenuUI;
     [SerializeField] private GameObject returnMenuUI;
 
-
-
     [SerializeField] private GameObject confirmationPrompt = null;
 
     public TMP_Dropdown resolutionDropDown;
@@ -45,6 +43,22 @@ public class GraphicsMenu : MonoBehaviour
         resolutionDropDown.AddOptions(options);
         resolutionDropDown.value = currentResolutionIndex;
         resolutionDropDown.RefreshShownValue();
+
+        if (settingPref.Resolution.z == 1)
+        {
+            tmpIsFullscreen = true;
+        }
+        else
+        {
+            tmpIsFullscreen = false;
+        }
+
+        tmpQualityLevel = settingPref.Quality;
+
+        Screen.fullScreen = tmpIsFullscreen;
+        fullScreenToggle.isOn = tmpIsFullscreen;
+        QualitySettings.SetQualityLevel(tmpQualityLevel);
+        Screen.SetResolution(settingPref.Resolution.x, settingPref.Resolution.y, Screen.fullScreen);
     }
 
     public void SetResolution(int resolutionIndex)
@@ -64,25 +78,17 @@ public class GraphicsMenu : MonoBehaviour
 
     public void GraphicsApply()
     {
-        //PlayerPrefs.SetInt("masterQuality", tmpQualityLevel);
-
-        //PlayerPrefs.SetInt("masterFullscreen", (tmpIsFullscreen ? 1 : 0));
-
         StartCoroutine(ConfirmationBox());
 
         Screen.fullScreen = tmpIsFullscreen;
         QualitySettings.SetQualityLevel(tmpQualityLevel);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
-        settingPref.IsFullScreen = (tmpIsFullscreen ? 1 : 0);
         settingPref.Quality = tmpQualityLevel;
-        //solve this
-        //settingPref.Resolution = resolutions;
 
+        settingPref.Resolution = new Vector3Int(resolution.width, resolution.height, (tmpIsFullscreen ? 1 : 0));
 
-        //Debug.Log(PlayerPrefs.GetInt("masterFullscreen"));
-
-        //Debug.Log("Applied Graphic Settings");
+        settingPref.Save();
 
     }
     public IEnumerator ConfirmationBox()
@@ -101,20 +107,17 @@ public class GraphicsMenu : MonoBehaviour
     {
         if (_menuType == "Graphics")
         {
-            /*qualityDropDown.value = 1;
-            QualitySettings.SetQualityLevel(1);
 
             fullScreenToggle.isOn = false;
             Screen.fullScreen = false;
-
+            QualitySettings.SetQualityLevel(1);
             Resolution currentResolution = Screen.currentResolution;
             Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
-            resolutionDropDown.value = resolutions.Length;*/
 
-            //Debug.Log(_menuType);
-            //Debug.Log("Reset Settrings");
+            resolutionDropDown.value = resolutions.Length;
+            qualityDropDown.value = 1;
 
-            //GraphicsApply();
+            GraphicsApply();
         }
     }
 }
