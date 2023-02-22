@@ -44,7 +44,7 @@ public class GraphicsMenu : MonoBehaviour
         resolutionDropDown.value = currentResolutionIndex;
         resolutionDropDown.RefreshShownValue();
 
-        if (settingPref.Resolution.z == 1)
+      /*  if (settingPref.Resolution.z == 1)
         {
             tmpIsFullscreen = true;
         }
@@ -58,7 +58,15 @@ public class GraphicsMenu : MonoBehaviour
         Screen.fullScreen = tmpIsFullscreen;
         fullScreenToggle.isOn = tmpIsFullscreen;
         QualitySettings.SetQualityLevel(tmpQualityLevel);
-        Screen.SetResolution(settingPref.Resolution.x, settingPref.Resolution.y, Screen.fullScreen);
+
+        if (settingPref.Resolution == null)
+        {
+            Screen.SetResolution(1920, 1080, false);
+        }
+        else
+        {
+            Screen.SetResolution(settingPref.Resolution.x, settingPref.Resolution.y, Screen.fullScreen);
+        }*/
     }
 
     public void SetResolution(int resolutionIndex)

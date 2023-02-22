@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.ComponentModel;
 
 public class AdvancedCharacterController : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class AdvancedCharacterController : MonoBehaviour
     private float verticalVelocity = 0;
     private float xAxis;
     private float yAxis;
-    //private float tempGravity = 0;
     private float tempGrounded = 0;
     private float tempJumpPress = 0;
     private int extraAmountOfJumps;
@@ -61,8 +61,6 @@ public class AdvancedCharacterController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         inputOptions = new InputOptions();
 
-        //tempGravity = Physics.gravity.y;
-
         inputOptions.Player.Jump.started += Jump;
 
         inputOptions.Player.Jump.canceled += Jump;
@@ -71,6 +69,7 @@ public class AdvancedCharacterController : MonoBehaviour
         inputOptions.Player.Dash.canceled += Dash;
 
         inputOptions.Player.Pause.started += Pause;
+
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -111,10 +110,10 @@ public class AdvancedCharacterController : MonoBehaviour
     {
         inputOptions.Enable();
     }
-
     private void OnDisable()
     {
         inputOptions.Disable();
+
     }
 
     public void Move(Vector2 context)
@@ -160,7 +159,7 @@ public class AdvancedCharacterController : MonoBehaviour
 
         //set range limit
         xAxis = Mathf.Clamp(xAxis, minMaxAxis.x, minMaxAxis.y);
-        
+
         //moves only camera
         eyes.transform.localEulerAngles = Vector3.right * xAxis;
 
@@ -241,9 +240,10 @@ public class AdvancedCharacterController : MonoBehaviour
             }
         }
     }
-
+  
     public void Pause(InputAction.CallbackContext context)
     {
+        
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             SceneLoader.Instance.LoadScene(SceneIndices.Pause, LoadSceneMode.Additive);

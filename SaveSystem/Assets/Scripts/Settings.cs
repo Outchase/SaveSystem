@@ -5,7 +5,6 @@ using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.Serialization;
-using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public struct SettingsPref
@@ -68,6 +67,7 @@ public class Settings : ScriptableObject
 
     public void Save()
     {
+        //Debug.Log(_filePath);
         //var jsonData = JsonUtility.ToJson("[\"Audio\":" + audioSettings + "}", true);
         var jsonData = JsonUtility.ToJson(settingsPref, true);
         //jsonData += JsonUtility.ToJson(graphicSettings, true);

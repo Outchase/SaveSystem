@@ -52,17 +52,18 @@ public class SceneLoader : MonoBehaviour
         loadingScreen.SetActive(false);
         inputOptions = new InputOptions();
 
-        inputOptions.Menu.Continue.started += Continue;
+        inputOptions.Menu.Enable();
 
+        //inputOptions.Menu.Continue.started += Continue;
     }
     private void OnEnable()
     {
-        inputOptions.Enable();
+        inputOptions.Menu.Continue.started += Continue;
     }
 
     private void OnDisable()
     {
-        inputOptions.Disable();
+        inputOptions.Menu.Continue.started -= Continue;
     }
     private void RegisterNewScene(Scene scene, LoadSceneMode node)
     {
@@ -92,7 +93,7 @@ public class SceneLoader : MonoBehaviour
         fillingBar.fillAmount = 0f;
         var counter = 0f;
 
-        while (asyncOperation.progress < 0.9f || counter <= minLoadingDuration || pressToContinue != true)
+        while (asyncOperation.progress < 0.9f || counter <= minLoadingDuration )
         {
             yield return null;
             counter += Time.unscaledDeltaTime;
@@ -102,19 +103,20 @@ public class SceneLoader : MonoBehaviour
 
             fillingBar.fillAmount = Mathf.Min(loadingProgress, waitProgress);
 
-            if (counter >= minLoadingDuration)
-            {
-                continuePrompt.SetActive(true);
-            }
         }
 
-        continuePrompt.SetActive(false);
-        asyncOperation.allowSceneActivation = true;
-        yield return new WaitUntil( () => asyncOperation.isDone);
+        continuePrompt.SetActive(true);
 
+        asyncOperation.allowSceneActivation = true;
+        yield return new WaitUntil(() => asyncOperation.isDone);
 
         fillingBar.fillAmount = 1f;
+
+        yield return new WaitUntil(() => pressToContinue);
+        pressToContinue = false;
+
         loadingScreen.SetActive(false);
+
     }
 
     /*public void UnloadScene(SceneIndices sceneIndex)
@@ -130,6 +132,5 @@ public class SceneLoader : MonoBehaviour
     public void Continue(InputAction.CallbackContext context)
     {
         pressToContinue = true;
-
     }
 }
