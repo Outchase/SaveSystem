@@ -108,6 +108,7 @@ public class SceneLoader : MonoBehaviour
         continuePrompt.SetActive(true);
 
         asyncOperation.allowSceneActivation = true;
+
         yield return new WaitUntil(() => asyncOperation.isDone);
 
         fillingBar.fillAmount = 1f;

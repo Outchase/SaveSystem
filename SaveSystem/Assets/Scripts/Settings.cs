@@ -69,6 +69,7 @@ public class Settings : ScriptableObject
     {
         //Debug.Log(_filePath);
         //var jsonData = JsonUtility.ToJson("[\"Audio\":" + audioSettings + "}", true);
+        Debug.Log(_filePath);
         var jsonData = JsonUtility.ToJson(settingsPref, true);
         //jsonData += JsonUtility.ToJson(graphicSettings, true);
         File.WriteAllText(_filePath, jsonData);
